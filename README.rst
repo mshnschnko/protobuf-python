@@ -7,7 +7,6 @@ Virtual environment
 ===================
 
 .. code-block:: bash
-    :class: highlight
 
     python3 -m venv venv
     source venv/bin/activate # Unix
@@ -18,7 +17,6 @@ Build
 -----
 
 .. code-block:: bash
-    :class: highlight
 
     python3 setup.py build
 
@@ -26,6 +24,5 @@ Running tests
 -------------
 
 .. code-block:: bash
-    :class: highlight
 
     python3 -m unittest discover tests
