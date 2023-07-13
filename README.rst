@@ -9,21 +9,8 @@ Virtual environment
 .. code-block:: bash
 
    python3 -m venv venv
-
-- unix:
-
-.. code-block:: bash
-
-   source venv/bin/activate
-
-- windows:
-
-.. code-block:: bash
-
-   venv\Scripts\activate
-
-.. code-block:: bash
-
+   source venv/bin/activate # Unix
+   venv\Scripts\activate # Windows
    pip install -r requirements.txt
 
 Build
