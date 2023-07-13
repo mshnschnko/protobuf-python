@@ -7,22 +7,25 @@ Virtual environment
 ===================
 
 .. code-block:: bash
+    :class: highlight
 
-   python3 -m venv venv
-   source venv/bin/activate # Unix
-   venv\Scripts\activate # Windows
-   pip install -r requirements.txt
+    python3 -m venv venv
+    source venv/bin/activate # Unix
+    venv\Scripts\activate # Windows
+    pip install -r requirements.txt
 
 Build
 -----
 
 .. code-block:: bash
+    :class: highlight
 
-   python3 setup.py build
+    python3 setup.py build
 
 Running tests
 -------------
 
 .. code-block:: bash
+    :class: highlight
 
-   python3 -m unittest discover tests
+    python3 -m unittest discover tests
