@@ -6,7 +6,7 @@
 Virtual environment
 ===================
 
-.. code-block:: python
+.. code-block:: bash
     :class: highlight
 
     python3 -m venv venv
@@ -17,7 +17,7 @@ Virtual environment
 Build
 -----
 
-.. code-block:: python
+.. code-block:: bash
     :class: highlight
 
     python3 setup.py build
@@ -25,7 +25,7 @@ Build
 Running tests
 -------------
 
-.. code-block:: python
+.. code-block:: bash
     :class: highlight
 
     python3 -m unittest discover tests
