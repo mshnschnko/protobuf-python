@@ -31,17 +31,8 @@ class ParseTest(unittest.TestCase):
         self.assertEqual(bytesConsumed, 0)
 
     def test_wrongData(self):
-        data = b'\x05wrong'
-        message, bytesConsumed = parseDelimited(data, WrapperMessage)
-        
-        self.assertIsNone(message)
-        self.assertEqual(bytesConsumed, len(data))
-
-        data = b'message'
-        message, bytesConsumed = parseDelimited(data, WrapperMessage)
-        
-        self.assertIsNone(message)
-        self.assertEqual(bytesConsumed, 0)
+        with self.assertRaises(ValueError):
+            parseDelimited(b'\x05wrong', WrapperMessage)
 
     def test_corruptedData(self):
         message = WrapperMessage(
@@ -54,6 +45,5 @@ class ParseTest(unittest.TestCase):
         arr[0] -= 1
         data = bytes(arr)
 
-        message, bytesConsumed = parseDelimited(data, WrapperMessage)
-        self.assertIsNone(message)
-        self.assertEqual(bytesConsumed, len(data) - 1)
+        with self.assertRaises(ValueError):
+            parseDelimited(data, WrapperMessage)

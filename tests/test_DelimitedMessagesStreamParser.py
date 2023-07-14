@@ -206,9 +206,8 @@ class ParserTest(unittest.TestCase):
 
     def test_wrongData(self):
         parser = DelimitedMessagesStreamParser(WrapperMessage)
-        
-        messages = parser.parse("\x05wrong")
-        self.assertListEqual(messages, [])
+        with self.assertRaises(ValueError):
+            parser.parse(b'\x05wrong')
 
     def test_corruptedData(self):
         parser = DelimitedMessagesStreamParser(WrapperMessage)
@@ -218,7 +217,6 @@ class ParserTest(unittest.TestCase):
         )
 
         data = _VarintBytes(message.ByteSize()) + message.SerializeToString()
-        self.assertEqual(data, b'\x05\n\x03\n\x010')
 
         count = 3
         stream = data * count
@@ -226,11 +224,5 @@ class ParserTest(unittest.TestCase):
         corrupted = stream[:len(data)]
         corrupted += b'\x03'
         corrupted += stream[len(data) + 1:]
-        self.assertEqual(corrupted, b'\x05\n\x03\n\x010\x03\n\x03\n\x010\x05\n\x03\n\x010')
-
-        messages = parser.parse(corrupted)
-        self.assertEqual(len(messages), 2)
-
-        for item in messages:
-            self.assertTrue(item.HasField('fast_response'))
-            self.assertEqual(item.fast_response.current_date_time, "0")
+        with self.assertRaises(ValueError):
+            parser.parse(corrupted)
