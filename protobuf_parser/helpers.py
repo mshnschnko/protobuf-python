@@ -18,12 +18,12 @@ def parseDelimited(data: Any, cls: Type[T]) -> tuple[Type[T], int]:
     """
     if data is None or len(data) == 0:
         return None, 0
-    l, p = _DecodeVarint32(data, 0)
-    if l + p > len(data):
+    length, pos = _DecodeVarint32(data, 0)
+    if length + pos > len(data):
         return None, 0
     message = cls()
     try:
-        message.ParseFromString(data[p:p+l])
+        message.ParseFromString(data[pos:length+pos])
     except DecodeError:
         raise ValueError
-    return message, p + l
+    return message, length + pos
