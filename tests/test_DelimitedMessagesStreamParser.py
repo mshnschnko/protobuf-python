@@ -1,5 +1,5 @@
 from protobuf_parser.DelimitedMessagesStreamParser import DelimitedMessagesStreamParser
-from proto.message_pb2 import *
+from protobuf.message_pb2 import *
 
 from google.protobuf.internal.encoder import _VarintBytes
 
